@@ -22,10 +22,12 @@ layout: default
             <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
             {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
-      {%- endif -%}</p>
+      {%- endif -%}
+
       {% assign words = content | number_of_words %}
       &bull;
       {% include read_time.html %}
+    </p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
