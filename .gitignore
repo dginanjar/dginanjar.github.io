@@ -2,3 +2,5 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+docker-compose.yaml
+docker/
