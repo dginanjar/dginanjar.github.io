@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="space-y-8 md:space-y-16">
+    <h1>Tags</h1>
+
+    <nav class="text-base not-prose">
+        <ul class="flex flex-wrap space-y-2 space-x-2 space-y-reverse space-x-reverse [&>:first-child]:mr-2">
+            {{ range .Site.Taxonomies.tags }}
+                <li>
+                    <a href="{{ .Page.Permalink }}" class="inline-block p-2 px-3 text-sm first-letter:capitalize font-semibold bg-gray-200/75 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-600/75 rounded-md">
+                        {{ .Page.Title }}
+                        <span>({{ .Count }})</span>
+                    </a>
+                </li>
+            {{ end }}
+        </ul>
+    </nav>
+</div>
+{{ end }}

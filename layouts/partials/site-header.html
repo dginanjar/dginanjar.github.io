@@ -1,0 +1,26 @@
+<figure class="inline-flex items-center space-x-2">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="h-5 w-5">
+        <path fill-rule="evenodd" d="m3.2946 31.175c-3.0392-1.5182-3.2925-2.6857-3.2925-15.175 0-16.541-0.5436-15.998 15.998-15.998 16.541 0 15.998-0.5436 15.998 15.998 0 16.541 0.5436 15.998-15.998 15.998-9.5862 0-11.278-0.10952-12.705-0.82277zm17.731-7.454c5.1215-3.8002 5.1215-11.642 0-15.442-1.1612-0.86165-2.1148-1.0036-7.6467-1.1385l-6.32-0.1541v1.4922c0 1.0965 0.2496 1.5575 0.94115 1.7383 0.87452 0.22869 0.94115 0.64187 0.94115 5.838 0 5.2782-0.0528 5.592-0.94115 5.592-0.76575 0-0.94115 0.31372-0.94115 1.6834v1.6834l6.32-0.1541c5.532-0.13489 6.4855-0.27687 7.6467-1.1385zm-8.32-7.7212v-5.6467h2.6242c2.2731 0 2.8085 0.18407 3.9997 1.3755 1.2223 1.2223 1.3755 1.6981 1.3755 4.2712 0 2.5732-0.15324 3.049-1.3755 4.2712-1.1914 1.1914-1.7267 1.3755-3.9997 1.3755h-2.6242z" clip-rule="evenodd"/>
+    </svg>
+    <figcaption class="font-semibold">{{ with .Site.Title }}{{ . | safeHTML }}{{ end }}</figcaption>
+</figure>
+
+{{ if .Site.Menus.main }}
+    <nav class="inline-flex items-center space-x-6">
+        <button id="dark-btn" class="inline-block dark:hidden items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+        </button>
+        <button id="light-btn" class="hidden dark:inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="m17.715 15.15.95.316a1 1 0 0 0-1.445-1.185l.495.869ZM9 6.035l.846.534a1 1 0 0 0-1.14-1.49L9 6.035Zm8.221 8.246a5.47 5.47 0 0 1-2.72.718v2a7.47 7.47 0 0 0 3.71-.98l-.99-1.738Zm-2.72.718A5.5 5.5 0 0 1 9 9.5H7a7.5 7.5 0 0 0 7.5 7.5v-2ZM9 9.5c0-1.079.31-2.082.845-2.93L8.153 5.5A7.47 7.47 0 0 0 7 9.5h2Zm-4 3.368C5 10.089 6.815 7.75 9.292 6.99L8.706 5.08C5.397 6.094 3 9.201 3 12.867h2Zm6.042 6.136C7.718 19.003 5 16.268 5 12.867H3c0 4.48 3.588 8.136 8.042 8.136v-2Zm5.725-4.17c-.81 2.433-3.074 4.17-5.725 4.17v2c3.552 0 6.553-2.327 7.622-5.537l-1.897-.632Z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z" clip-rule="evenodd" />
+            </svg>
+        </button>
+
+        {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" class="inline-block py-4 text-sm font-semibold uppercase hover:underline">{{ .Name }}</a>
+        {{ end }}
+    </nav>
+{{ end }}

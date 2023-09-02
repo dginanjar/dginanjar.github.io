@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="space-y-8 md:space-y-16">
+    <nav class="space-y-8 md:space-y-16 text-base not-prose">
+        <ul class="space-y-2 md:text-lg">
+            {{ $paginator := .Paginate (where .Site.RegularPages "Params.Layout" "!=" "static") }}
+            {{ range $paginator.Pages }}
+                <li class="grid grid-cols-12 gap-6 leading-normal">
+                    <span class="col-span-4 text-right">
+                        {{ if not .Date.IsZero }}
+                            <time class="f6 mv4 dib tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
+                                {{- .Date | time.Format (default "January 2, 2006" .Site.Params.date_format) -}}
+                            </time>
+                        {{ end }}
+                    </span>
+                    <a href="{{ .Permalink }}" class="col-span-8 font-semibold hover:underline">{{ .Title }}</a>
+                </li>
+            {{ end }}
+        </ul>
+
+        {{ if gt .Paginator.TotalPages 1 }}
+            <nav class="grid grid-cols-12 gap-6">
+                {{ partial "pagination.html" . }}
+            </nav>
+        {{ end }}
+    </nav>
+</div>
+{{ end }}

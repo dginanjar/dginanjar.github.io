@@ -1,0 +1,27 @@
+baseURL = 'http://example.org/'
+languageCode = 'id-ID'
+title = "Damien's Blog"
+copyright = 'Damien'
+
+[params]
+  favicon = 'damien.svg'
+  description = "The last theme you'll ever need. Maybe."
+
+[menu]
+[[menu.main]]
+  name = 'Home'
+  pageRef = '/'
+  weight = 1
+[[menu.main]]
+  name = 'About'
+  pageRef = '/about'
+  weight = 2
+
+[taxonomies]
+  series = 'series'
+  tag = 'tags'
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"

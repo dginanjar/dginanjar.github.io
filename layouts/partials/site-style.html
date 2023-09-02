@@ -1,0 +1,7 @@
+{{ $style := resources.Get "app.css" | resources.PostCSS (dict "config" "./postcss.config.js") }}
+{{ if .Site.IsServer }}
+    {{ $style = $style | resources.ExecuteAsTemplate (printf "app.dev.%v.css" now.UnixMilli) . }}
+{{ else }}
+    {{ $style = $style | resources.Minify | resources.Fingerprint "sha512" | resources.PostProcess }}
+{{ end }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />

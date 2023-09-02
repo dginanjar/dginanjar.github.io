@@ -1,0 +1,16 @@
+{{ $linkToCover := "" }}
+{{ $matches := "feature,cover" }}
+{{ with .Params.featured_image }}
+    {{ $linkToCover = trim . "/" | absURL }}
+    {{ with $.Resources.GetMatch . }}
+        {{ $linkToCover = .RelPermalink }}
+    {{ end }}
+{{ else }}
+    {{ with .Resources.ByType "image" }}
+        {{ with .GetMatch (printf "**{%s}*" $matches) }}
+            {{ $linkToCover = .RelPermalink }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ return $linkToCover }}

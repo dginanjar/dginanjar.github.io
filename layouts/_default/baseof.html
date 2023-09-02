@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . | humanize }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    {{ $production := eq (getenv "HUGO_ENV") "production" | or (eq site.Params.env "production") }}
+    {{ if $production }}
+        <meta name="robots" content="index, follow">
+    {{ else }}
+        <meta name="robots" content="noindex, nofollow">
+    {{ end }}
+    {{ partialCached "site-style.html" . }}
+    {{ partial "site-script.html" . }}
+    {{ partial "site-favicon.html" . }}
+    {{ if .OutputFormats.Get "RSS" }}
+        {{ with .OutputFormats.Get "RSS" }}
+            <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+            <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+        {{ end }}
+    {{ end }}
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/schema.html" . }}
+    {{ if $production }}
+        {{ template "_internal/google_analytics.html" . }}
+    {{ end }}
+</head>
+<body class="flex flex-col min-h-screen divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-black">
+    <header class="px-4">
+        <div class="max-w-[75ch] mx-auto prose md:prose-lg dark:prose-invert">
+            <div class="flex items-center justify-between text-base not-prose">
+                {{ partial "site-header.html" . }}
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-4">
+        <div class="max-w-[75ch] py-8 sm:py-16 md:py-24 lg:py-32 mx-auto prose md:prose-lg dark:prose-invert prose-a:text-blue-700 dark:prose-a:text-yellow-700 prose-a:no-underline hover:prose-a:underline">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </main>
+
+    <footer class="px-4">
+        <div class="max-w-[75ch] mx-auto prose md:prose-lg dark:prose-invert">
+            <div class="text-base not-prose">
+                {{ partial "site-footer.html" . }}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

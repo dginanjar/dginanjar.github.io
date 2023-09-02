@@ -1,0 +1,2 @@
+{{ $script := resources.Get "app.js" | js.Build (dict "targetPath" "app.js" ) | resources.Minify | resources.Fingerprint "sha512" }}
+<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>

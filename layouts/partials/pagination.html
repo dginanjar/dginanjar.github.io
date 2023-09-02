@@ -1,0 +1,37 @@
+<ul class="col-start-5 list-none flex items-center -ml-2">
+    {{ with .Paginator }}
+        {{ $currentPageNumber := .PageNumber }}
+        {{ if ne $currentPageNumber .First.PageNumber }}
+            <li><a href="{{ .First.URL }}" class="inline-block p-2 text-blue-700 dark:text-yellow-700 hover:underline">&laquo;</a></li>
+        {{ end }}
+
+        {{ if .HasPrev }}
+            <li><a href="{{ .Prev.URL }}" class="inline-block p-2 text-blue-700 dark:text-yellow-700 hover:underline">&lsaquo;</a></li>
+        {{ end }}
+
+        {{ $slots := 5 }}
+        {{ $start := math.Max 1 (sub .PageNumber (math.Floor (div $slots 2))) }}
+        {{ $end := math.Min .TotalPages (sub (add $start $slots) 1) }}
+        {{ if lt (add (sub $end $start) 1) $slots }}
+            {{- $start = math.Max 1 (add (sub $end $slots) 1) }}
+        {{ end }}
+
+        {{ range $p := seq $start $end }}
+            <li>
+            {{- if eq $.Paginator.PageNumber $p }}
+                <span class="inline-block p-2">{{ $p }}</span>
+            {{ else }}
+                <a href="{{ (index $.Paginator.Pagers (sub $p 1)).URL }}" class="inline-block p-2 text-blue-700 dark:text-yellow-700 hover:underline">{{ $p }}</a>
+            {{ end }}
+            </li>
+        {{ end }}
+
+        {{ if .HasNext }}
+            <li><a href="{{ .Next.URL }}" class="inline-block p-2 text-blue-700 dark:text-yellow-700 hover:underline">&rsaquo;</a></li>
+        {{ end }}
+
+        {{ if ne $currentPageNumber .Last.PageNumber }}
+            <li><a href="{{ .Last.URL }}" class="inline-block p-2 text-blue-700 dark:text-yellow-700 hover:underline">&raquo;</a></li>
+        {{ end }}
+    {{ end }}
+</ul>
