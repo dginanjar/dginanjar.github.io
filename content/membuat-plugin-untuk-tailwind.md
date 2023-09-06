@@ -1,8 +1,9 @@
 ---
 title: 'Membuat plugin untuk Tailwind'
 date: 2023-09-05
+description: 'Membuat plugin untuk Tailwind dengan contoh menambahkan custom variant'
 ---
-Setelah [project Vite](/memulai-project-vite-dan-tailwind) selesai dibuat kita akan membuat sebuah plugin untuk Tailwind.
+Setelah [project Vite](/memulai-project-vite-dan-tailwind) selesai dibuat kita akan membuat sebuah plugin untuk Tailwind dengan contoh kasus membuat custom variant.
 
 Buat sebuah file `src/js/plugin.js` dan isi kode berikut.
 

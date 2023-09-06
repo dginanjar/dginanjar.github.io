@@ -1,6 +1,7 @@
 ---
 title: 'Memulai project Vite dan Tailwind'
 date: 2023-09-04
+description: 'Memulai project Vite dan Tailwind'
 ---
 Kita mulai dengan menjalankan perintah berikut di terminal.
 
